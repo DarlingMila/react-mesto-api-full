@@ -1,6 +1,8 @@
 class Api {
-  constructor ({address}) {
-    this._address = address;;
+  constructor ({address, token, groupId}) {
+    this._address = address;
+    this._token = token;
+    this._groupId = groupId;
   }
 
   _getResponseData(res) {
@@ -86,7 +88,7 @@ class Api {
   }
 
   putLike(cardId) {
-    return fetch (`${this._address}/cards/likes/${cardId}`, {
+    return fetch (`${this._address}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -98,7 +100,7 @@ class Api {
   }
 
   removeLike(cardId) {
-    return fetch (`${this._address}/cards/likes/${cardId}`, {
+    return fetch (`${this._address}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -111,7 +113,7 @@ class Api {
 
   changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
-      return fetch (`${this._address}/cards/likes/${cardId}`, {
+      return fetch (`${this._address}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -121,7 +123,7 @@ class Api {
         return this._getResponseData(res);
       })
     } else {
-      return fetch (`${this._address}/cards/likes/${cardId}`, {
+      return fetch (`${this._address}/cards/${cardId}/likes`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

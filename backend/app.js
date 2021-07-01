@@ -1,23 +1,10 @@
 const express = require('express');
 
 const app = express();
-const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
-
-app.use(cors({
-  origin: 'http://mesto.cards.nomoredomains.club',
-  credentials: true,
-}));
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'http://mesto.cards.nomoredomains.club');
-//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
-//   next();
-// });
 
 const dotenv = require('dotenv');
 
@@ -27,6 +14,11 @@ const auth = require('./middlewares/auth');
 const error = require('./middlewares/error');
 const { urlValidation, emailValidation } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+
+app.use(cors({
+  origin: 'http://mesto.cards.nomoredomains.club',
+  credentials: true,
+}));
 
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
