@@ -1,0 +1,13 @@
+.getIn__inputs {
+  font-size: 14px;
+  line-height: 17px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100px;
+
+  padding-top:37px;
+  padding-bottom: 216px;
+}

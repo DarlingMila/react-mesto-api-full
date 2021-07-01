@@ -1,0 +1,18 @@
+.getIn__input {
+  display: block;
+
+  width: 100%;
+
+  padding: 13px 0 13px 0;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid white;
+
+  color: white;
+
+  background-color: transparent;
+
+  outline: none;
+}

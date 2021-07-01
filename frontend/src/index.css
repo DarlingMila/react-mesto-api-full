@@ -1,0 +1,76 @@
+@import url("./vendor/normalize.css");
+@import url("./vendor/fonts/fonts.css");
+
+@import url("./blocks/page/page.css");
+@import url("./blocks/page/__container/page__container.css");
+
+@import url("./blocks/header/header.css");
+@import url("./blocks/header/__logo/header__logo.css");
+@import url("./blocks/header/__side-wrap/header__side-wrap.css");
+@import url("./blocks/header/__email/header__email.css");
+@import url("./blocks/header/__button/header__button.css");
+
+@import url("./blocks/footer/footer.css");
+@import url("./blocks/footer/__copyright/footer__copyright.css");
+
+@import url("./blocks/gallery-grid/gallery-grid.css");
+
+@import url("./blocks/card/card.css");
+@import url("./blocks/card/__img/card__img.css");
+@import url("./blocks/card/__footer/card__footer.css");
+@import url("./blocks/card/__title/card__title.css");
+@import url("./blocks/card/__wrap-like/card__wrap-like.css");
+@import url("./blocks/card/__like-button/card__like-button.css");
+@import url("./blocks/card/__like-count/card__like-count.css");
+@import url("./blocks/card/__like-button/_active/card__like-button_active.css");
+@import url("./blocks/card/__bin-button/card__bin-button.css");
+@import url("./blocks/card/__bin-button/_hidden/card__bin-button_hidden.css");
+
+@import url("./blocks/profile/profile.css");
+@import url("./blocks/profile/__avatar/profile__avatar.css");
+@import url("./blocks/profile/__change-avatar-button/profile__change-avatar-button.css");
+@import url("./blocks/profile/__info/profile__info.css");
+@import url("./blocks/profile/__wrap/profile__wrap.css");
+@import url("./blocks/profile/__name/profile__name.css");
+@import url("./blocks/profile/__edit-button/profile__edit-button.css");
+@import url("./blocks/profile/__profession/profile__profession.css");
+@import url("./blocks/profile/__add-button/profile__add-button.css");
+
+@import url("./blocks/popup/popup.css");
+@import url("./blocks/popup/__container/popup__container.css");
+@import url("./blocks/popup/__container/_small/popup__container_small.css");
+@import url("./blocks/popup/__container/_tiny/popup__container_tiny.css");
+@import url("./blocks/popup/__title/popup__title.css");
+@import url("./blocks/popup/__title/_tiny/popup__title_tiny.css");
+@import url("./blocks/popup/__close-button/popup__close-button.css");
+@import url("./blocks/popup/__close-button/_small/popup__close-button_small.css");
+@import url("./blocks/popup/__close-button/_tiny/popup__close-button_tiny.css");
+@import url("./blocks/popup/__inputs/popup__inputs.css");
+@import url("./blocks/popup/__inputs/_small/popup__inputs_small.css");
+@import url("./blocks/popup/__inputs/_tiny/popup__inputs_tiny.css");
+@import url("./blocks/popup/__input/popup__input.css");
+@import url("./blocks/popup/__input/_type/popup__input_type_name.css");
+@import url("./blocks/popup/__input/_type/popup__input_type_profession.css");
+@import url("./blocks/popup/__input/_type/popup__input_type_place.css");
+@import url("./blocks/popup/__input/_type/popup__input_type_link.css");
+@import url("./blocks/popup/__save-button/popup__save-button.css");
+@import url("./blocks/popup/__bigger-img/popup__bigger-img.css");
+@import url("./blocks/popup/__img/popup__img.css");
+@import url("./blocks/popup/__img-title/popup__img-title.css");
+@import url("./blocks/popup/__info-wrap/popup__info-wrap.css");
+@import url("./blocks/popup/__title/_info/popup__title_info.css");
+
+@import url("./blocks/popup/__input/_error/popup__input_error.css");
+@import url("./blocks/popup/__error/popup__error.css");
+@import url("./blocks/popup/__save-button/_disabled/popup__save-button_disabled.css");
+
+@import url("./blocks/popup/_opened/popup_opened.css");
+
+@import url("./blocks/getIn/getIn.css");
+@import url("./blocks/getIn/__form/getIn__form.css");
+@import url("./blocks/getIn/__title/getIn__title.css");
+@import url("./blocks/getIn/__inputs/getIn__inputs.css");
+@import url("./blocks/getIn/__input/getIn__input.css");
+@import url("./blocks/getIn/__submit-button/getIn__submit-button.css");
+@import url("./blocks/getIn/__subtitle/getIn__subtitle.css");
+@import url("./blocks/getIn/__enter-button/getIn__enter-button.css");

@@ -1,0 +1,22 @@
+.getIn__submit-button {
+  color: black;
+  font-size: 18px;
+  line-height: 22px;
+
+  padding: 0;
+  margin: 0;
+
+  background-color: white;
+  border-radius: 2px;
+  border: none;
+
+  height: 50px;
+  width: 100%;
+
+  cursor: pointer;
+  outline: none;
+}
+
+.getIn__submit-button:hover {
+  opacity: 0.8;
+}

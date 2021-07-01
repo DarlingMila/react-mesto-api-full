@@ -1,0 +1,17 @@
+.getIn__enter-button {
+  color: white;
+  font-size: 14px;
+  line-height: 17px;
+
+  background-color: transparent;
+  border: none;
+
+  text-decoration: none;
+
+  cursor: pointer;
+  outline: none;
+}
+
+.getIn__enter-button:hover {
+  opacity: 0.8;
+}
