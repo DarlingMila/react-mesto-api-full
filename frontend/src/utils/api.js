@@ -154,7 +154,7 @@ class Api {
 }
 
 const api = new Api({
-  address: 'http://api.mesto.cards.nomoredomains.club/',
+  address: 'http://api.mesto.cards.nomoredomains.club',
 }); 
 
 export default api;

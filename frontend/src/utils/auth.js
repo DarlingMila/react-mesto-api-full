@@ -52,7 +52,7 @@ class Auth {
 }
 
 const auth = new Auth ({
-  address: 'http://api.mesto.cards.nomoredomains.club/',
+  address: 'http://api.mesto.cards.nomoredomains.club',
 }); 
 
 export default auth;
