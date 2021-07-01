@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
@@ -23,6 +24,11 @@ const {
 } = require('./controllers/users');
 
 const PORT = 3000;
+
+app.use(cors({
+  origin: 'http://mesto.cards.nomoredomains.club',
+  credentials: true,
+}));
 
 app.use(bodyParser.json());
 
