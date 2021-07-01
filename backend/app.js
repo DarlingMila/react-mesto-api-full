@@ -6,6 +6,19 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 
+app.use(cors({
+  origin: 'http://mesto.cards.nomoredomains.club',
+  credentials: true,
+}));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://mesto.cards.nomoredomains.club');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+  next();
+});
+
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -24,11 +37,6 @@ const {
 } = require('./controllers/users');
 
 const PORT = 3000;
-
-app.use(cors({
-  origin: 'http://api.mesto.cards.nomoredomains.club',
-  credentials: true,
-}));
 
 app.use(bodyParser.json());
 
