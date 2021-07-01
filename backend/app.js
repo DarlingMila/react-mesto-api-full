@@ -28,7 +28,7 @@ const {
   login,
 } = require('./controllers/users');
 
-const PORT = 3000;
+const { PORT = 3000 } = process.env;
 
 app.use(bodyParser.json());
 
@@ -42,6 +42,12 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.listen(PORT);
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post(
   '/signup',

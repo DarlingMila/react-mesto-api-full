@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
-const { JWT_KEY = 'dev-key' } = process.env;
+const { NODE_ENV, JWT_KEY } = process.env;
 
 const BadRequestError = require('../errors/bad-request-error');
 const UnauthorizedError = require('../errors/unauthorized-error');
@@ -156,7 +156,7 @@ const login = (req, res, next) => {
 
         const token = jwt.sign(
           { _id: user._id },
-          JWT_KEY,
+          NODE_ENV === 'production' ? JWT_KEY : 'dev-secret',
           { expiresIn: '7d' },
         );
 
