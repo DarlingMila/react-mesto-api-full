@@ -154,9 +154,7 @@ class Api {
 }
 
 const api = new Api({
-  address: 'https://mesto.nomoreparties.co/v1',
-  token: '6df26ad6-4b0b-4694-ac83-2ab40c0d09c7',
-  groupId: 'cohort-19'
+  address: 'http://api.mesto.cards.nomoredomains.club/',
 }); 
 
 export default api;

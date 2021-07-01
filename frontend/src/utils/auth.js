@@ -52,7 +52,7 @@ class Auth {
 }
 
 const auth = new Auth ({
-  address: 'https://auth.nomoreparties.co',
+  address: 'http://api.mesto.cards.nomoredomains.club/',
 }); 
 
 export default auth;
