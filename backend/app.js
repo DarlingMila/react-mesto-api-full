@@ -26,7 +26,7 @@ const {
 const PORT = 3000;
 
 app.use(cors({
-  origin: 'http://mesto.cards.nomoredomains.club',
+  origin: 'http://api.mesto.cards.nomoredomains.club',
   credentials: true,
 }));
 
