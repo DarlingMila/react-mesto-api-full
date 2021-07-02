@@ -37,6 +37,8 @@ function App() {
   const tokenCheck = React.useCallback(() => {
     const jwt = localStorage.getItem('jwt');
 
+    console.log(`tokenCheck ${jwt}`);
+
     if (jwt) {
       auth.getUserInfo(jwt)
       .then((res) => {
@@ -56,6 +58,7 @@ function App() {
   React.useEffect(() => {
     if (loggedIn) {
       const jwt = localStorage.getItem('jwt');
+      console.log(`if loggedIn ${jwt}`);
 
       if (jwt) {
         auth.getUserInfo(jwt)
@@ -184,6 +187,8 @@ function App() {
       if (res) {
         setLoggedIn(true);
         localStorage.setItem('jwt', res.token);
+
+        console.log(`что положили в локал после авторизации ${localStorage}`);
       }
     })
     .catch(() => {

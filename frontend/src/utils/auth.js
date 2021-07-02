@@ -46,6 +46,7 @@ class Auth {
       }
     })
     .then(res => {
+      console.log(`токен в getUserInfo ${token}`);
       return this._getResponseData(res);
     })
   }
