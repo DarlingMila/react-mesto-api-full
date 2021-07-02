@@ -189,6 +189,8 @@ function App() {
         localStorage.setItem('jwt', res.token);
 
         console.log(`что положили в локал после авторизации ${localStorage}`);
+        console.log(`что лежит в res ${res}`);
+        console.log(`сам токен из ответа ${res.token}`);
       }
     })
     .catch(() => {
