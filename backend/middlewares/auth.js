@@ -6,6 +6,9 @@ const UnauthorizedError = require('../errors/unauthorized-error');
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
+  console.log(`что пришло в res ${res}`);
+  console.log(`авторизация ${authorization}`);
+  console.log(`что в req ${req}`);
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new UnauthorizedError('Необходима авторизация');
@@ -25,6 +28,9 @@ const auth = (req, res, next) => {
   }
 
   req.user = payload;
+
+  console.log(`что в req.user ${req.user}`);
+  console.log(`что в payload ${payload}`);
 
   next();
 };
