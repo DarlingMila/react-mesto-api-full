@@ -37,7 +37,8 @@ function App() {
   const tokenCheck = React.useCallback(() => {
     const jwt = localStorage.getItem('jwt');
 
-    console.log(`tokenCheck ${jwt}`);
+    console.log(`tokenCheck - jwt ${jwt}`);
+    console.log(`localStorage ${localStorage.getItem('jwt')}`);
 
     if (jwt) {
       auth.getUserInfo(jwt)

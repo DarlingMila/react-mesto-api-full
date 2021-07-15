@@ -137,8 +137,12 @@ class Api {
 
 }
 
-const api = new Api({
-  address: 'http://api.mesto.cards.nomoredomains.club',
+// const api = new Api({
+//   address: 'http://api.mesto.cards.nomoredomains.club',
+// }); 
+
+const api = new Api ({
+  address: 'http://localhost:3001',
 }); 
 
 export default api;

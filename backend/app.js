@@ -1,6 +1,5 @@
 const express = require('express');
 
-const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -10,27 +9,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const auth = require('./middlewares/auth');
-const error = require('./middlewares/error');
-const { urlValidation, emailValidation } = require('./middlewares/validation');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { PORT = 3001 } = process.env;
 
-app.use(cors({
-  origin: 'http://mesto.cards.nomoredomains.club',
-  credentials: true,
-}));
-
-const usersRouter = require('./routes/users');
-const cardsRouter = require('./routes/cards');
-
-const {
-  createUser,
-  login,
-} = require('./controllers/users');
-
-const { PORT = 3000 } = process.env;
-
-app.use(bodyParser.json());
+const app = express();
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -39,7 +20,33 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// app.use(cors({
+//   origin: 'http://mesto.cards.nomoredomains.club',
+//   credentials: true,
+// }));
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+
 app.listen(PORT);
+
+const auth = require('./middlewares/auth');
+const error = require('./middlewares/error');
+const { urlValidation, emailValidation } = require('./middlewares/validation');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+
+const usersRouter = require('./routes/users');
+const cardsRouter = require('./routes/cards');
+
+const {
+  createUser,
+  login,
+} = require('./controllers/users');
 
 app.use(requestLogger);
 
@@ -50,7 +57,7 @@ app.get('/crash-test', () => {
 });
 
 app.post(
-  '/signup',
+  '/sign-up',
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().min(2).max(30),
@@ -64,7 +71,7 @@ app.post(
 );
 
 app.post(
-  '/signin',
+  '/sign-in',
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().required().custom(emailValidation),

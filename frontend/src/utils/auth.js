@@ -12,7 +12,7 @@ class Auth {
   }
 
   register(password, email) {
-    return fetch(`${this._address}/signup`, {
+    return fetch(`${this._address}/sign-up`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -26,7 +26,7 @@ class Auth {
   }
 
   authorize(password, email) {
-    return fetch(`${this._address}/signin`, {
+    return fetch(`${this._address}/sign-in`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -34,6 +34,10 @@ class Auth {
       body: JSON.stringify({password, email})
     })
     .then(res => {
+      console.log(`authorize: password ${password}`)
+      console.log(`authorize: email ${email}`)
+      console.log(`authorize: res ${res}`)
+
       return this._getResponseData(res);
     })
   }
@@ -46,14 +50,17 @@ class Auth {
       }
     })
     .then(res => {
-      console.log(`токен в getUserInfo ${token}`);
       return this._getResponseData(res);
     })
   }
 }
 
+// const auth = new Auth ({
+//   address: 'http://api.mesto.cards.nomoredomains.club',
+// }); 
+
 const auth = new Auth ({
-  address: 'http://api.mesto.cards.nomoredomains.club',
+  address: 'http://localhost:3001',
 }); 
 
 export default auth;
