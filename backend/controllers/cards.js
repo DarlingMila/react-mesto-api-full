@@ -6,7 +6,9 @@ const NotFoundError = require('../errors/not-found-error');
 //  GET /cards — возвращает все карточки
 const getCards = (req, res, next) => {
   Card.find()
-    .then((cards) => res.status(200).send(cards))
+    .then((cards) => {
+      res.status(200).send(cards);
+    })
     .catch(next);
 };
 
@@ -35,7 +37,7 @@ const deleteCard = (req, res, next) => {
 
   return Card.findByIdAndRemove(cardId)
     .then((card) => {
-      if (card.owner !== req.user._id) {
+      if (card.owner.toString() !== req.user._id) {
         throw new ForbiddenError('Вы не можете удалить карточку');
       }
 
@@ -66,6 +68,7 @@ const likeCard = (req, res, next) => {
       } else {
         return res.status(200).send({
           message: 'Поставлен лайк',
+          card,
         });
       }
     })
@@ -88,6 +91,7 @@ const dislikeCard = (req, res, next) => {
       } else {
         return res.status(200).send({
           message: 'Лайк убран',
+          card,
         });
       }
     })

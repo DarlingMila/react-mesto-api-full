@@ -37,7 +37,7 @@ function Main(props) {
               deleteButton={props.onCardDelete}
             />
            )
-          )}
+          ).reverse()}
         </ul>
       </section>
 

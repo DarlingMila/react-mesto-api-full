@@ -23,15 +23,15 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(cors({
-//   origin: 'http://mesto.cards.nomoredomains.club',
-//   credentials: true,
-// }));
-
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://mesto.cards.nomoredomains.club',
   credentials: true,
 }));
+
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   credentials: true,
+// }));
 
 app.listen(PORT);
 
@@ -81,10 +81,8 @@ app.post(
   login,
 );
 
-app.use(auth);
-
-app.use('/', usersRouter);
-app.use('/', cardsRouter);
+app.use('/', auth, usersRouter);
+app.use('/', auth, cardsRouter);
 
 app.use(errorLogger);
 

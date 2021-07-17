@@ -37,13 +37,10 @@ function App() {
   const tokenCheck = React.useCallback(() => {
     const jwt = localStorage.getItem('jwt');
 
-    console.log(`tokenCheck - jwt ${jwt}`);
-    console.log(`localStorage ${localStorage.getItem('jwt')}`);
-
     if (jwt) {
       auth.getUserInfo(jwt)
       .then((res) => {
-        setUserEmail(res.data.email);
+        setUserEmail(res.user.email);
         setLoggedIn(true);
         history.push('/main');
       })
@@ -59,12 +56,11 @@ function App() {
   React.useEffect(() => {
     if (loggedIn) {
       const jwt = localStorage.getItem('jwt');
-      console.log(`if loggedIn ${jwt}`);
 
       if (jwt) {
         auth.getUserInfo(jwt)
         .then((res) => {
-          setUserEmail(res.data.email);
+          setUserEmail(res.user.email);
         })
         .catch(err => console.log('Ошибка при получении почты пользователя'));
       }
@@ -81,34 +77,39 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
 
   React.useEffect(() => {
-    api.getUserInformation()
+    const jwt = localStorage.getItem('jwt');
+    api.getUserInformation(jwt)
     .then((res) => {
-      setCurrentUser(res);
+      const user = res.user;
+      setCurrentUser(user);
     })
     .catch(err => console.log('Ошибка загрузки данных пользователя'));
-  }, [])
+  }, [loggedIn])
 
   React.useEffect(() => {
-    api.getInitialCards()
+    const jwt = localStorage.getItem('jwt');
+    api.getInitialCards(jwt)
     .then((res) => {
       setCards(res);
     })
     .catch(err => console.log('Ошибка загрузки карточек'));
-  }, [])
+  }, [loggedIn])
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const jwt = localStorage.getItem('jwt');
+    const isLiked = card.likes.some(i => i === currentUser._id);
     
-    api.changeLikeCardStatus(card._id, !isLiked)
+    api.changeLikeCardStatus(card._id, !isLiked, jwt)
     .then((newCard) => {
-      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+      const newCards = cards.map((c) => c._id === card._id ? newCard.card : c);
       setCards(newCards);
     })
     .catch(err => console.log('Ошибка лайка'));
   } 
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
+    const jwt = localStorage.getItem('jwt');
+    api.deleteCard(card._id, jwt)
     .then(() => {
       const newCards = cards.filter((c) => c._id !== card._id);
       setCards(newCards);
@@ -144,7 +145,8 @@ function App() {
   }
 
   function handleUpdateUser({name, about}) {
-    api.changeUserInformation(name, about)
+    const jwt = localStorage.getItem('jwt');
+    api.changeUserInformation(name, about, jwt)
     .then((res) => {
       setCurrentUser(res);
       setIsEditProfilePopupOpen(false);
@@ -153,7 +155,8 @@ function App() {
   }
 
   function handleUpdateAvatar({avatar}) {
-    api.changeUserAvatar(avatar)
+    const jwt = localStorage.getItem('jwt');
+    api.changeUserAvatar(avatar, jwt)
     .then((res) => {
       setCurrentUser(res);
       setIsEditAvatarPopupOpen(false);
@@ -162,9 +165,10 @@ function App() {
   }
 
   const handleAddPlaceSubmit = ({name, link}) => {
-    api.addNewCard({name, link})
+    const jwt = localStorage.getItem('jwt');
+    api.addNewCard({name, link}, jwt)
     .then((newCard) => {
-      setCards([newCard, ...cards]); 
+      setCards([...cards, newCard.card]); 
       setIsAddPlacePopupOpen(false);
     })
     .catch(err => console.log('Ошибка при добавлении новой карточки'));
@@ -188,10 +192,6 @@ function App() {
       if (res) {
         setLoggedIn(true);
         localStorage.setItem('jwt', res.token);
-
-        console.log(`что положили в локал после авторизации ${localStorage}`);
-        console.log(`что лежит в res ${res}`);
-        console.log(`сам токен из ответа ${res.token}`);
       }
     })
     .catch(() => {

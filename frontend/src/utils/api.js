@@ -13,18 +13,23 @@ class Api {
     }
   }
 
-  getInitialCards() {
-    return fetch(`${this._address}/cards`)
+  getInitialCards(token) {
+    return fetch(`${this._address}/cards`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
     .then(res => {
       return this._getResponseData(res);
     })
   }
 
-  addNewCard({name, link}) {
+  addNewCard({name, link}, token) {
     return fetch(`${this._address}/cards`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: name,
@@ -37,11 +42,12 @@ class Api {
     })
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return fetch (`${this._address}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       }
     })
     .then(res => {
@@ -49,18 +55,23 @@ class Api {
     })
   }
 
-  getUserInformation() {
-    return fetch(`${this._address}/users/me`)
+  getUserInformation(token) {
+    return fetch(`${this._address}/users/me`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
     .then(res => {
         return this._getResponseData(res);
     })
   }
 
-  changeUserInformation(name, about) {
+  changeUserInformation(name, about, token) {
     return fetch (`${this._address}/users/me`, {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json', 
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: name,
@@ -72,11 +83,12 @@ class Api {
     })
   }
 
-  changeUserAvatar(avatar) {
+  changeUserAvatar(avatar, token) {
     return fetch (`${this._address}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
         avatar: avatar 
@@ -87,36 +99,39 @@ class Api {
     })
   }
 
-  putLike(cardId) {
-    return fetch (`${this._address}/cards/${cardId}/likes`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-  }
+  // putLike(cardId, token) {
+  //   return fetch (`${this._address}/cards/${cardId}/likes`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`,
+  //     }
+  //   })
+  //   .then(res => {
+  //     return this._getResponseData(res);
+  //   })
+  // }
 
-  removeLike(cardId) {
-    return fetch (`${this._address}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => {
-      return this._getResponseData(res);
-    })
-  }
+  // removeLike(cardId, token) {
+  //   return fetch (`${this._address}/cards/${cardId}/likes`, {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`,
+  //     }
+  //   })
+  //   .then(res => {
+  //     return this._getResponseData(res);
+  //   })
+  // }
 
-  changeLikeCardStatus(cardId, isLiked) {
+  changeLikeCardStatus(cardId, isLiked, token) {
     if (isLiked) {
       return fetch (`${this._address}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
       })
       .then(res => {
@@ -126,7 +141,8 @@ class Api {
       return fetch (`${this._address}/cards/${cardId}/likes`, {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         }
       })
       .then(res => {
@@ -137,12 +153,12 @@ class Api {
 
 }
 
-// const api = new Api({
-//   address: 'http://api.mesto.cards.nomoredomains.club',
-// }); 
-
-const api = new Api ({
-  address: 'http://localhost:3001',
+const api = new Api({
+  address: 'http://api.mesto.cards.nomoredomains.club',
 }); 
+
+// const api = new Api ({
+//   address: 'http://localhost:3001',
+// }); 
 
 export default api;

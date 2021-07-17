@@ -160,8 +160,9 @@ const login = (req, res, next) => {
           { expiresIn: '7d' },
         );
 
-        return res.cookie('jwt', token, { httpOnly: true }).status(200).send({
+        return res.status(200).send({
           message: 'Вход выполнен',
+          token,
         });
       }));
     })
@@ -169,7 +170,7 @@ const login = (req, res, next) => {
 };
 
 const getMyInfo = (req, res, next) => {
-  User.findOne(req.user.email)
+  User.findById(req.user._id)
     .then((user) => {
       res.status(200).send({ user });
     })

@@ -34,10 +34,6 @@ class Auth {
       body: JSON.stringify({password, email})
     })
     .then(res => {
-      console.log(`authorize: password ${password}`)
-      console.log(`authorize: email ${email}`)
-      console.log(`authorize: res ${res}`)
-
       return this._getResponseData(res);
     })
   }
@@ -55,12 +51,12 @@ class Auth {
   }
 }
 
-// const auth = new Auth ({
-//   address: 'http://api.mesto.cards.nomoredomains.club',
-// }); 
-
 const auth = new Auth ({
-  address: 'http://localhost:3001',
+  address: 'http://api.mesto.cards.nomoredomains.club',
 }); 
+
+// const auth = new Auth ({
+//   address: 'http://localhost:3001',
+// }); 
 
 export default auth;
