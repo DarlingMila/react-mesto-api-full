@@ -56,7 +56,7 @@ const auth = new Auth ({
 }); 
 
 // const auth = new Auth ({
-//   address: 'http://localhost:3001',
+//   address: 'http://localhost:3000',
 // }); 
 
 export default auth;
