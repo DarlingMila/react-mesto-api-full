@@ -21,6 +21,10 @@ const getUsers = (req, res, next) => {
 const getUserById = (req, res, next) => {
   const { userId } = req.params;
 
+  if (userId.length < 24) {
+    throw new BadRequestError('Неверный айди пользователя');
+  }
+
   return User.findById(userId)
     .then((user) => {
       if (user) {

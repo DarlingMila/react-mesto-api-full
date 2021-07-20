@@ -37,17 +37,17 @@ const deleteCard = (req, res, next) => {
 
   return Card.findByIdAndRemove(cardId)
     .then((card) => {
+      if (!card) {
+        throw new NotFoundError('Карточка не найдена');
+      }
+
       if (card.owner.toString() !== req.user._id) {
         throw new ForbiddenError('Вы не можете удалить карточку');
       }
 
-      if (!card) {
-        throw new NotFoundError('Карточка не найдена');
-      } else {
-        return res.status(200).send({
-          message: 'Карточка была удалена',
-        });
-      }
+      return res.status(200).send({
+        message: 'Карточка была удалена',
+      });
     })
     .catch(next);
 };

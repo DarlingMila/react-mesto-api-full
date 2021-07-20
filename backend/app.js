@@ -43,6 +43,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 
+const NotFoundError = require('./errors/not-found-error');
+
 const {
   createUser,
   login,
@@ -83,6 +85,10 @@ app.post(
 
 app.use('/', auth, usersRouter);
 app.use('/', auth, cardsRouter);
+
+app.get('*', (req, res, next) => {
+  next(new NotFoundError('Запрашиваемый ресурс не найден'));
+});
 
 app.use(errorLogger);
 
